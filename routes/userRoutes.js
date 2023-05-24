@@ -12,7 +12,7 @@ router.route("/register").post(singleUpload, register);
 router.route("/login").post(login);
 
 // logout
-router.route("/logout").get(logout);
+router.route("/logout").delete(logout);
 
 // getMyProfile -> in it only the user which is authenticated can go to this route and get the profile
 router.route("/me")
