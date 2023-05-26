@@ -18,10 +18,10 @@ export const buySubscription = catchAsyncError(async (req, res, next) => {
     customer_notify: 1,
     total_count: 12,
   });
-  // Initialize the subscription object if it doesn't exist
-  if (!user.subscription) {
-    user.subscription = {};
-  }
+  // // Initialize the subscription object if it doesn't exist
+  // if (!user.subscription) {
+  //   user.subscription = {};
+  // }
   // updating the subscription in the database
   user.subscription.id = subscription.id;
   user.subscription.status = subscription.status;
@@ -85,7 +85,7 @@ export const cancelSubscription = catchAsyncError(async (req, res, next) => {
   const refundTime = process.env.REFUND_DAYS * 24 * 60 * 60 * 1000;
   // checking if we have to make a refund or not
   if (gap < refundTime) {
-    // await instance.payments.refund(payment.razorypay_payment_id);
+    await instance.payments.refund(payment.razorypay_payment_id);
     refund = true;
   }
   // updating the Payment and the User database
