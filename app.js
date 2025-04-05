@@ -7,10 +7,6 @@ import cors from "cors";
 dotenv.config({ path: "./config/config.env" });
 const app = express();
 
-// using middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 // cors are required becoz if we don't give it, we can't request to another website through the server
 app.use(cors({
   // only the origin website is allowed
@@ -19,6 +15,10 @@ app.use(cors({
   methods: ["GET", "POST", "DELETE", "PUT"],
 }));
 
+// using middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Importing and using the routes
 import Course from "./routes/courseRoutes.js";
